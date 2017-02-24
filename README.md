@@ -25,6 +25,10 @@ python GitHack.py http://www.example.com/.git/
 2. 尝试目录遍历克隆
 3. 尝试从缓存文件(index)、commit记录中恢复
 
+### 截图
+
+![](http://7xtigg.com1.z0.glb.clouddn.com/githack.png)
+
 ### 相关链接
 
 * [BugScan](http://www.bugscan.net)
