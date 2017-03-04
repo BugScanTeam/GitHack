@@ -9,7 +9,9 @@
 * git
     * ubuntu/debian: `$ apt-get install git`
     * redhat/centos: `$ yum install git`
-    * windows
+    * windows [git-for-windows下载](https://github.com/git-for-windows/git/releases/latest)
+
+**使用前需确保 git 在 环境变量中**
 
 ### 使用方法
 
