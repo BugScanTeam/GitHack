@@ -29,7 +29,7 @@ import subprocess
 def init():
     logger.info("Initialize Git")
     process = subprocess.Popen(
-        "cd %s ; git init" % (paths.GITHACK_DIST_TARGET_PATH),
+        "git init %s" % (paths.GITHACK_DIST_TARGET_PATH),
         shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if stderr:

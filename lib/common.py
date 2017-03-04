@@ -88,7 +88,7 @@ def readFile(filename):
 
 def writeFile(filename, data):
     try:
-        with open(filename, "w") as f:
+        with open(filename, "wb") as f:
             f.write(data)
     except IOError, ex:
         errMsg = "something went wrong while trying to write "
