@@ -53,7 +53,7 @@ def clone():
 def valid_git_repo():
     logger.info("Valid Repository")
     process = subprocess.Popen(
-        "cd %s ; git reset --hard HEAD" % (paths.GITHACK_DIST_TARGET_PATH),
+        "cd %s && git reset" % (paths.GITHACK_DIST_TARGET_PATH),
         shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     stdout, stderr = process.communicate()
     if stderr:
@@ -147,7 +147,7 @@ def clone_pack():
     logger.info("Clone pack data.")
     packdata = readorwget("objects/info/packs")
     if packdata:
-        packs = re.findall('P pack-(.{40}).pack\n', packdata)
+        packs = re.findall('P pack-([a-z0-9]{40}).pack\n', packdata)
         for pack in packs:
             readorwget("objects/pack/pack-%s.idx" % (pack))
             readorwget("objects/pack/pack-%s.pack" % (pack))
@@ -227,10 +227,10 @@ def parse_commit(data, commithash):
     try:
         de_data = zlib.decompress(data)
         m = re.search(
-            'commit \d+?\x00tree (.{40})\n', de_data, re.M | re.S | re.I)
+            'commit \d+?\x00tree ([a-z0-9]{40})\n', de_data, re.M | re.S | re.I)
         if m:
             obj = m.group(1)
-        parents = re.findall('parent (.{40})\n', de_data, re.M | re.S | re.I)
+        parents = re.findall('parent ([a-z0-9]{40})\n', de_data, re.M | re.S | re.I)
     except:
         parents = []
         if DEBUG:

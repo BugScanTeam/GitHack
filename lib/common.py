@@ -77,7 +77,7 @@ def initAgents():
 def readFile(filename):
     # fileObject = open(filename)
     try:
-        with open(filename) as f:
+        with open(filename, "rb") as f:
             retVal = f.read()
     except IOError, ex:
         errMsg = "something went wrong while trying to read "
