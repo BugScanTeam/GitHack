@@ -100,6 +100,11 @@ def clone_from_cache():
     HEAD_HASH = readorwget(refs)
     readorwget("logs/refs/heads/%s" % (refs.split("/")[-1]))
     cache_commits(HEAD_HASH.replace("\n", ""))
+
+    # 下载 stash
+    STASH_HASH = readorwget("refs/stash")
+    cache_commits(STASH_HASH.replace("\n", ""))
+
     cache_objects()
 
 
