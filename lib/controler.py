@@ -34,14 +34,17 @@ def method_a():
 def method_b():
     logger.info("Try to Clone with Directory Listing")
     if isdirlist():
-        git_dir = os.path.join(paths.GITHACK_DIST_TARGET_PATH, ".git")
-        if not os.path.exists(git_dir):
-            init()
-        clone_from_list("/")
-        refresh_files()
-        if not valid_git_repo():
-            logger.warning("Clone With Directory Listing end. But missed some files.")
-        return True
+        try:
+            git_dir = os.path.join(paths.GITHACK_DIST_TARGET_PATH, ".git")
+            if not os.path.exists(git_dir):
+                init()
+            clone_from_list("/")
+            refresh_files()
+            if not valid_git_repo():
+                logger.warning("Clone With Directory Listing end. But missed some files.")
+            return True
+        except:
+            return False
     logger.warning("[Skip][First Try] Target is not support Directory Listing")
     return False
 
