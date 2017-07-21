@@ -103,7 +103,8 @@ def clone_from_cache():
 
     # 下载 stash
     STASH_HASH = readorwget("refs/stash")
-    cache_commits(STASH_HASH.replace("\n", ""))
+    if STASH_HASH:
+        cache_commits(STASH_HASH.replace("\n", ""))
 
     cache_objects()
 
