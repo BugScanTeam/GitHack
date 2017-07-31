@@ -99,7 +99,9 @@ def clone_from_cache():
     readorwget("logs/HEAD", True)
     HEAD_HASH = readorwget(refs)
     readorwget("logs/refs/heads/%s" % (refs.split("/")[-1]))
-    cache_commits(HEAD_HASH.replace("\n", ""))
+    
+    if HEAD_HASH:
+        cache_commits(HEAD_HASH.replace("\n", ""))
 
     # 下载 stash
     STASH_HASH = readorwget("refs/stash")
@@ -112,6 +114,7 @@ def clone_from_cache():
 def readorwget(filename, refresh=False):
     filepath = os.path.join(paths.GITHACK_DIST_TARGET_GIT_PATH, filename)
     if refresh or not os.path.exists(filepath):
+        logger.info(filename)
         wget(filename)
     else:
         if DEBUG:
