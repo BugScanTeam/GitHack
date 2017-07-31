@@ -71,7 +71,9 @@ def initDirs():
 
 
 def initAgents():
-    agents.extend(readFile(paths.USER_AGENTS).split("\n"))
+    data = readFile(paths.USER_AGENTS).splitlines()
+    data = [t.strip() for t in data if t.strip() != '']
+    agents.extend(data)
 
 
 def readFile(filename):
