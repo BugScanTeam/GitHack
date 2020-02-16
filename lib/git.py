@@ -91,9 +91,12 @@ def clone_from_cache():
     logger.info("Cache files")
     refresh_files()
     readorwget("COMMIT_EDITMSG")
+    readorwget("ORIG_HEAD")
+    readorwget("description")
     readorwget("info/exclude")
     readorwget("FETCH_HEAD")
-    readorwget("/refs/heads/master")
+    readorwget("refs/heads/master")
+    readorwget("refs/remote/master")
     refs = readorwget("HEAD")[5:-1]
     readorwget("index")
     readorwget("logs/HEAD", True)
@@ -103,6 +106,8 @@ def clone_from_cache():
     if HEAD_HASH:
         cache_commits(HEAD_HASH.replace("\n", ""))
 
+    readorwget("logs/refs/remote/master")
+    readorwget("logs/refs/stash")
     # 下载 stash
     STASH_HASH = readorwget("refs/stash")
     if STASH_HASH:

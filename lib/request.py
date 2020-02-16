@@ -38,6 +38,9 @@ def request_data(url):
 def wget(filepath):
     url = "%s%s" % (target.TARGET_GIT_URL, filepath)
     filename = os.path.join(paths.GITHACK_DIST_TARGET_GIT_PATH, filepath)
+    dirname = os.path.dirname(filename)
+    if not os.path.exists(dirname):
+        os.makedirs(dirname)
     data = request_data(url)
     if data:
         writeFile(filename, data)
