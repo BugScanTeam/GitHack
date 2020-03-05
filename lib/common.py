@@ -8,7 +8,7 @@ See the file 'LICENCE' for copying permission
 
 import sys
 import os
-import urlparse
+from urllib import parse
 from lib.data import logger
 from lib.data import paths
 from lib.data import target
@@ -47,7 +47,7 @@ def banner():
 def setPaths(url):
     logger.info("Set Paths")
     target.TARGET_GIT_URL = url if (url[-1] == "/") else url + "/"
-    target.TARGET_DIST = urlparse.urlparse(target.TARGET_GIT_URL).netloc.replace(':', '_')
+    target.TARGET_DIST = parse.urlparse(target.TARGET_GIT_URL).netloc.replace(':', '_')
     logger.info("Target Url: %s" % (target.TARGET_GIT_URL))
     paths.GITHACK_DIST_ROOT_PATH = os.path.join(paths.GITHACK_ROOT_PATH, "dist")
     paths.GITHACK_DATA_PATH = os.path.join(paths.GITHACK_ROOT_PATH, "data")
@@ -81,7 +81,7 @@ def readFile(filename):
     try:
         with open(filename, "rb") as f:
             retVal = f.read()
-    except IOError, ex:
+    except IOError as ex:
         errMsg = "something went wrong while trying to read "
         errMsg += "the input file ('%s')" % ex
         # raise IOError(errMsg)
@@ -92,7 +92,7 @@ def writeFile(filename, data):
     try:
         with open(filename, "wb") as f:
             f.write(data)
-    except IOError, ex:
+    except IOError as ex:
         errMsg = "something went wrong while trying to write "
         errMsg += "to the output file ('%s')" % ex
         # raise IOError(errMsg)

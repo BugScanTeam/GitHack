@@ -7,7 +7,7 @@ See the file 'LICENCE' for copying permission
 """
 
 import os
-import urllib2
+import urllib.request
 import random
 from lib.common import writeFile
 from lib.data import paths
@@ -29,7 +29,7 @@ def request_data(url):
             data = urllib2.urlopen(request).read()
             if data:
                 return data
-        except Exception, e:
+        except Exception as e:
             if DEBUG:
                 logger.warning("Request Exception: %s" % str(e))
     return None
